@@ -56,6 +56,8 @@ class Api
     public const FIELD_AMOUNT            = 'amount';
     public const FIELD_CURRENCY_CODE     = 'currencyCode';
     public const FIELD_RESPONSE_CODE     = 'responseCode';
+    public const FIELD_CAPTURE_MODE      = 'captureMode';
+    public const FIELD_CAPTURE_DAY       = 'captureDay';
 
     // Gateway form fields
     public const FORM_FIELD_DATA              = 'Data';
@@ -103,6 +105,10 @@ class Api
 
         // Set merchantId
         $details[self::FIELD_MERCHANT_ID] = $this->options[self::FIELD_MERCHANT_ID];
+
+        // Set capture options
+        $details[self::FIELD_CAPTURE_MODE] = 'IMMEDIATE';
+        $details[self::FIELD_CAPTURE_DAY]  = 0;
 
         // Build data string
         $formData[self::FORM_FIELD_DATA] = $this->computeDataField( array_filter( $details, function ( $item ) {

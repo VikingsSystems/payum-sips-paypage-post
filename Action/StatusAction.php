@@ -64,19 +64,26 @@ class StatusAction implements ActionInterface, ApiAwareInterface
                 case self::STATUS_DECLINED:
                 case self::STATUS_FRAUD_SUSPECTED_SEAL:
                 case self::STATUS_MAXIMUM_RETRIES_REACHED:
+                    $model['reason'] = 'Declined, fraud or maximum retries exceeded.';
                     $request->markFailed();
                     break;
 
                 case self::STATUS_SERVICE_UNAVAILABLE:
-                case self::STATUS_SESSION_EXPIRED:
                 case self::STATUS_TEMPORARY_ERROR:
+                    $model['reason']       = 'Temporary error or service unavailable.';
                     $model['responseCode'] = null;
                     $request->markUnknown();
+                    break;
+
+                case self::STATUS_SESSION_EXPIRED:
+                    $model['reason'] = 'Session expired, payment cancelled.';
+                    $request->markCanceled();
                     break;
 
                 default:
                     $model['reason'] = 'Unknown responseCode';
                     $request->markUnknown();
+                    break;
             }
 
             return;

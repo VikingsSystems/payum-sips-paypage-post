@@ -1,7 +1,7 @@
 {
     "name": "vikings-systems/payum-sips-paypage-post",
     "type": "project",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Payum extension for Atos SIPS Paypage POST payment gateway",
     "keywords": ["payment"],
     "homepage": "https://payum.forma-pro.com",
